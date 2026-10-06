@@ -1,0 +1,15 @@
+Validation starts long before the silicon comes back from the fab. The team
+boots the design on an emulator, runs the test suite, and reads the logs. When a
+test fails, the log tells the story: which test ran, which register was read,
+and which value came back. A good engineer reads the log, finds the first error,
+and works backwards to the root cause.
+
+The same test runs again on the prototype, and again on the first silicon. A test
+that passes on the emulator but fails on silicon points to timing, power, or a
+board problem. A test that fails everywhere points to the design or to the test
+itself. Every failure gets a log, every log gets a reader, and every reader asks
+the same question: what changed between the last pass and the first fail?
+
+Small tools help. A tool that counts errors in the log, sorts them, and shows the
+most frequent ones first saves hours of reading. The data structures behind such a
+tool are simple: an array, a list, and a hash map.
